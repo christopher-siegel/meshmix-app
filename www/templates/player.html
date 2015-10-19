@@ -1,0 +1,57 @@
+<ion-view>
+  <ion-nav-bar class="bar-calm bar-newsic player-container" align-title="center">
+    <ion-nav-buttons side="left"><a class="button button-icon icon ion-ios-settings-strong" ng-click="settings()"></a></ion-nav-buttons>
+    <ion-nav-title><img class="logo-small" src="img/newsic-logo-small.png"></ion-nav-title>
+
+    <ion-nav-buttons side="right"><a class="button button-icon icon ion-music-note" href="#/lists"></a></ion-nav-buttons>
+<!--    <ion-nav-buttons side="right">
+      <a class="button button-icon icon ion-ios-chatbubble" ng-click="feedback()"></a>
+    </ion-nav-buttons>-->
+  </ion-nav-bar>
+
+  <ion-content class="padding">
+    <div class="music-player-padding"></div>
+
+    <div class="player-stream">
+      <div class="row flexbox-container">
+        <div class="col-33 control control-left" ng-click="changeColor('left'); playTrack(audioTracks[1].track, audioTracks[1].key)" ng-class="{'stream-active': currentStream === 'left'}">
+          <div class="round-button">
+            <span class="middle">News</span>
+            <span class="below">only</span>
+          </div>
+        </div>
+        <div class="col-33 control control-middle" ng-click="changeColor('middle'); playTrack(audioTracks[2].track, audioTracks[2].key)" ng-class="{'stream-active': currentStream === 'middle'}">
+          <div class="round-button">
+            <span class="middle">Mixed</span>
+          </div>
+        </div>
+        <div class="col-33 control control-right" ng-click="changeColor('right'); playTrack(audioTracks[2].track, audioTracks[2].key)" ng-class="{'stream-active': currentStream === 'right'}">
+          <div class="round-button">
+            <span class="middle">Music</span>
+            <span class="below">only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="player-audio">
+      <p class="title animate-overflow"><span>{{currentTitle}}</span></p>
+      <p class="subtitle animate-overflow"><span>{{currentSubtitle}}</span></p>
+    </div>
+
+  </ion-content>
+
+  <audio preload="auto">
+    <source src="audio/locations.mp3" type="audio/mp3">
+  </audio>
+
+  <div id="music-player">
+    <div class="player-controls" ng-class="isPlaying ? 'player-active' : 'player-inactive'">
+      <div class="row flexbox-container">
+        <div class="col-33 transition control control-left"><a class="button button-icon icon ion-ios-skipbackward"></a></div>
+        <div class="col-33 transition control control-middle" ng-class="{'left': currentStream == 'left', 'middle': currentStream == 'middle', 'right': currentStream == 'right'}"><a class="button button-icon icon flexbox-container" ng-class="isPlaying ? 'ion-ios-pause' : 'ion-ios-play'" ng-click="isPlaying ? stopTrack(audioTracks[2].key) : playTrack(audioTracks[2].track, audioTracks[2].key)"></a></div>
+        <div class="col-33 transition control control-right"><a class="button button-icon icon ion-ios-skipforward" ng-click="('news' === currentSound) ? playTrack(audioTracks[0].track, audioTracks[0].key) : playTrack(audioTracks[1].track, audioTracks[1].key)"></a></div>
+      </div>
+    </div>
+  </div>
+</ion-view>

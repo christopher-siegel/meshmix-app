@@ -1,0 +1,16 @@
+<ion-view view-title="Playlist" name="playlist-view">
+
+  <ion-nav-bar class="bar-calm bar-newsic player-container" align-title="center">
+    <ion-nav-buttons side="left"><a class="button button-icon icon ion-ios-arrow-back" href="#/player"></a></ion-nav-buttons>
+    <ion-nav-title><img class="logo-small" src="img/newsic-logo-small.png"></ion-nav-title>
+  </ion-nav-bar>
+
+  <ion-content>
+    <p>Hier sollte eigentlich die Playlist stehen!</p>
+    <ion-list>
+      <ion-item ng-repeat="list in playlists" ui-sref="playlist({listid: list.id, userid: list.owner.id, listname: list.name})">
+        {{list.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

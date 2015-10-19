@@ -1,0 +1,62 @@
+<ion-view view-title="Login" class="not-logged-in login" name="login-view">
+  <!--<ion-content class="padding">
+      <img src="img/logo-white.png" alt="" width="200px" style="position:relative;left:50%;margin:40px 0 0 -100px;">
+      <div class="row">
+        <div class="col">
+          <ng-include src="'templates/includes/messages.html'"></ng-include>
+          <ng-include src="'templates/includes/formvalidator.html'"></ng-include>
+        </div>
+      </div>
+      <form name="welcomeForm" ng-submit="welcomeForm.$valid && login(user)" novalidate>
+        <div class="list list-inset">
+            <label class="item item-input item-icon-right">
+              <i class="icon ion-person"></i>
+              <input type="email" ng-model="user.email" placeholder="E-Mail" autofocus required>
+            </label>
+            <label class="item item-input">
+                <input name="password" type="password" ng-model="user.password" placeholder="Passwort" ng-maxlength="36" required>
+            </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">
+            Anmelden
+          </button>
+        </div>
+      </form>
+      <div class="switch-login">
+        <div class="title"><a ui-sref="signup">Neues Konto erstellen</a></div>
+      </div>
+  </ion-content>-->
+
+  <ion-content>
+    <img src="img/newsic-logo-small.png" alt="" width="100px" style="position:relative;left:50%;margin:40px 0 0 -50px;">
+
+<!-- @TODO: CUSTOM LOGIN
+    <form name="welcomeForm">
+      <div class="list list-inset">
+          <label class="item item-input item-icon-right">
+            <i class="icon ion-person"></i>
+            <input type="email" ng-model="user.email" placeholder="Email" autofocus required>
+          </label>
+          <label class="item item-input">
+              <input name="password" type="password" ng-model="user.password" placeholder="Password" ng-maxlength="36" required>
+          </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-dark" ng-click="login()">
+          Login
+        </button>
+      </div>
+    </form>
+    <div class="switch-login">
+      <div class="title"><a ui-sref="signup">Register new account</a></div>
+    </div>
+/ @TODO: CUSTOM LOGIN -->
+    <div class="padding">
+      <button class="button button-block button-dark" ng-click="fbLogin()">
+        Login with Facebook
+      </button>
+    </div>
+
+  </ion-content>
+</ion-view>

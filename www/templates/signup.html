@@ -1,0 +1,98 @@
+<ion-view class="not-logged-in signup" view-title="Signup">
+  <ion-nav-bar class="bar-calm bar-dark player-container" align-title="center">
+    <ion-nav-title>Sign up</ion-nav-title>
+
+    <ion-nav-back-button class="button-clear"
+      ng-click="goBack()">
+      <i class="ion-ios-arrow-back"></i> Back
+    </ion-nav-back-button>
+
+  </ion-nav-bar>
+
+<!--  <ion-content>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col col-75">
+        <div class="logo">
+          <img src="img/logo-white.png" alt="">
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <ng-include src="'templates/includes/messages.html'"></ng-include>
+        <ng-include src="'templates/includes/formvalidator.html'"></ng-include>
+      </div>
+    </div>
+    <form name="welcomeForm" ng-submit="welcomeForm.$valid && register(user)" novalidate>
+
+      <div class="list list-inset">
+          <label class="item item-input item-icon-right">
+            <i class="icon ion-person"></i>
+            <input name="username" type="text" ng-model="user.username" placeholder="Benutzername" autofocus required>
+          </label>
+          <label class="item item-input item-icon-right">
+            <i class="icon ion-person"></i>
+            <input name="prename" type="text" ng-model="user.prename" placeholder="Vorname" autofocus required>
+          </label>
+          <label class="item item-input item-icon-right">
+            <i class="icon ion-person"></i>
+            <input name="lastname" type="text" ng-model="user.lastname" placeholder="Nachname" autofocus required>
+          </label>
+          <label class="item item-input">
+            <input type="email" ng-model="user.email" placeholder="Name@Beispiel.com" required>
+          </label>
+
+          <label class="item item-input">
+            <input type="password" name="password" required ng-model="user.password" ng-minlength="8" ng-maxlength="36" placeholder="Passwort"> 
+          </label>
+          <label class="item item-input">
+            <input type="password" name="passwordCompare" required ng-model="user.passwordCompare" match-password="user.password" ng-minlength="8" ng-maxlength="36" placeholder="Passwort wiederholen">
+          </label>
+        </div>
+
+        <div class="padding">
+          <button type="submit" class="button button-block button-positive">
+            Neues Konto erstellen
+          </button>
+        </div>
+    </form>
+
+    <div class="switch-login">
+      <div class="title"><a ng-href="#/{{'login'}}">Mit bestehendem Konto anmelden</a></div>
+    </div>
+
+  </ion-content>-->
+
+  <ion-content>
+    <form name="welcomeForm">
+
+      <div class="list list-inset">
+          <label class="item item-input item-icon-right">
+            <i class="icon ion-person"></i>
+            <input type="email" ng-model="user.email" placeholder="name@example.com" required>
+          </label>
+          <label class="item item-input">
+            <input type="password" name="password" required ng-model="user.password" ng-minlength="8" ng-maxlength="36" placeholder="Password"> 
+          </label>
+          <label class="item item-input">
+            <input type="password" name="passwordCompare" required ng-model="user.passwordCompare" match-password="user.password" ng-minlength="8" ng-maxlength="36" placeholder="Password (same again)">
+          </label>
+        </div>
+
+        <div class="padding">
+          <button type="submit" class="button button-block button-dark">
+            Create new account
+          </button>
+        </div>
+    </form>
+
+    <div class="switch-login">
+      <div class="title"><a ng-href="#/{{'login'}}">Login with existing account</a></div>
+    </div>
+
+  </ion-content>
+</ion-view>

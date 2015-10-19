@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm bar-newsic">
+    <h1 class="title">Settings</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeSettings()">Close</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="music-player-padding"></div>
+
+    <div class="settings-categories">
+      <div class="item item-divider category-divider">
+        Tab on each category to change status
+      </div>
+      <div class="row" ng-repeat="twoCategories in chunkedCategories">
+        <div class="category transition col-50 status-{{category.checked}}" ng-repeat="category in twoCategories" ng-click="updateCategoryStatus(category)" style="background:url(img/{{categoryStyling[category.id-1].img}});">
+          <span class="layer">
+            <span class="name">{{categoryStyling[category.id-1].name}}</span>
+            <span class="status">{{ category.checked ? 'Active' : 'Disabled' }}</span>
+          </span>
+        </div>
+       </div>
+    </div>
+
+    <div class="item item-divider category-divider">
+      Currently logged in: {{user.email}}
+    </div>
+    <div class="logout"><a class="button button-block button-light" ng-click="closeSettings();logout()">Logout from app</a></div>
+  
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,10 @@
+{
+  "name": "newsic-app",
+  "app_id": "1e3ff744",
+  "proxies": [
+    {
+      "path": "http://localhost:8100",
+      "proxyUrl": "https://stream.watsonplatform.net/text-to-speech/api"
+    }
+  ]
+}
