@@ -3,8 +3,8 @@
   "app_id": "1e3ff744",
   "proxies": [
     {
-      "path": "http://localhost:8100",
-      "proxyUrl": "https://stream.watsonplatform.net/text-to-speech/api"
+      "path": "/#/login",
+      "proxyUrl": "http://unlazy.de/news"
     }
   ]
 }

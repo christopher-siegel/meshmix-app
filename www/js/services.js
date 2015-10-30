@@ -105,10 +105,10 @@ angular.module('starter.services', [])
   function sendHttpPost(path, pdata) {
     $http({
       method: 'POST',
-      url: 'http://newsic.app/' + path,
+      url: 'http://unlazy.de/' + path,
       headers: {
-        'Content-Type' : 'multipart/form-data'
-        'Authorization' : $localstorage.get('access_token');
+        'Content-Type' : 'multipart/form-data',
+        'Authorization' : (typeof $localstorage == 'undefined') ?  'none' : $localstorage.get('access_token')
       },
       data: pdata
     }).then(function successCallback(response) {
