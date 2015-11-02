@@ -1,7 +1,7 @@
 {
-  "name": "newsic-app",
+  "name": "MeshMix",
   "version": "1.0.0",
-  "description": "newsic-app: An Ionic project",
+  "description": "MeshMix: Your music mixed with personalized, location-based news.",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -24,7 +24,7 @@
     "org.apache.cordova.media"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "ios",
+    "android"
   ]
 }
