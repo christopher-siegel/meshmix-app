@@ -158,9 +158,6 @@ app.controller('PlayerCtrl', function(
       });
   };
 
-
-
-
   // // Triggered in the login modal to close it
   // $scope.closeFeedback = function() {
   //   $scope.modal.hide();
@@ -204,7 +201,6 @@ app.controller('PlayerCtrl', function(
 
   // Setup categories
   $scope.categories = getCategories();
-
 
   function getCategories() {
     var localCategories = $localstorage.getObject('categories');
@@ -274,7 +270,6 @@ app.controller('PlayerCtrl', function(
     genre: "Topher Mohr and Alex Elena (Extended Radio Mix)"
   }];
 
-
   $scope.audioTracks = Array.prototype.slice.call($scope.sounds, 0);
 
   $scope.player = {
@@ -289,6 +284,44 @@ app.controller('PlayerCtrl', function(
 		$ionicPlatform.ready(useAudioPlugin);
 	}
 
+
+  /* New function for playing music */
+  // Text to speach documentation
+  // https://github.com/arvindr21/speech-synthesis-cordova
+  $scope.playMediaFile = function(key){
+
+    if(key == 1){
+
+      $scope.ttsOn = true;
+
+      var speech = new SpeechSynthesisUtterance('So this was taken on my 15th birthday. I forced my little sister to take a photo of me before we went out to my birthday dinner. And why did I want my photo taken? Great question. Back then, all I knew was what I wanted. And I wanted was to be Facebook Famous. In order to get that, I needed a new ‘hot profile pic.’ So I tried really hard to get one. I wanted an image of myself so hot/sexy/likeable that it would reach 100+ likes. Yes. You heard that right. That was my mindset. I was obsessed with ‘likes’. Well, really, I was obsessed with the idea of being liked by others. I somehow managed to convince myself that when I was ‘Facebook Famous’ I would forever be happy. I figured, the more people that clicked ‘like’ on my photos, the more people actually liked me in real life. Pretty simple right? To be Facebook Famous meant everyone liked you. Girls wanted to be your friend, boys wanted to date you. Everyone talked about you, watched you, stalked you, wanted to be you. It was my dream at 15. Well actually, since I can remember...');
+      speech.lang = 'en-US';
+      speechSynthesis.speak(speech);
+
+      $scope.stopTTS = function(){
+        speechSynthesis.pause();
+        $scope.ttsOn = false;
+      };
+
+      $scope.runTTS = function(){
+        speechSynthesis.resume();
+        $scope.ttsOn = true;
+      };
+    }
+
+    if(key == 2){
+      audioPlugin.play('audio/Venice_Beach.mp3'); // Play audio track
+    }
+
+    if(key == 3){
+      audioPlugin.play('audio/Venice_Beach.mp3'); // Play audio track
+    }
+  };
+
+
+
+
+
 	function useAudioPlugin() {
 		var audioPlugin;
 		try {
@@ -300,6 +333,9 @@ app.controller('PlayerCtrl', function(
       $scope.playTrack = function(track, key) {
         $scope.isPlaying = true;
         $scope.currentSound = key;
+        console.log(track);
+        console.log(key);
+
         for (tr in $scope.audioTracks) {
           if ($scope.audioTracks[tr].key == key) {
             $scope.currentTitle = $scope.audioTracks[tr].title;
@@ -308,6 +344,8 @@ app.controller('PlayerCtrl', function(
         }
         // Preload an audio track before we play it
         audioPlugin.preloadComplex(key, track, 1, 1, 0, function(msg) {
+          console.log('Music should be playing!');
+
           // If this is not a first playback stop and unload previous audio track
           if ($scope.player.key.length > 0) {
             audioPlugin.stop($scope.player.key); // Stop audio track

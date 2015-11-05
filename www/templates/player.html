@@ -12,20 +12,28 @@
   <ion-content class="padding">
     <div class="music-player-padding"></div>
 
+    <button class="button button-block button-positive" ng-show="ttsOn" ng-click="stopTTS()">
+      Stop
+    </button>
+
+    <button class="button button-block button-positive" ng-show="!ttsOn" ng-click="runTTS()">
+      Resume
+    </button>
+
     <div class="player-stream">
       <div class="row flexbox-container">
-        <div class="col-33 control control-left" ng-click="changeColor('left'); playTrack(audioTracks[1].track, audioTracks[1].key)" ng-class="{'stream-active': currentStream === 'left'}">
+        <div class="col-33 control control-left" ng-click="changeColor('left'); playMediaFile(1)" ng-class="{'stream-active': currentStream === 'left'}">
           <div class="round-button">
             <span class="middle">News</span>
             <span class="below">only</span>
           </div>
         </div>
-        <div class="col-33 control control-middle" ng-click="changeColor('middle'); playTrack(audioTracks[2].track, audioTracks[2].key)" ng-class="{'stream-active': currentStream === 'middle'}">
+        <div class="col-33 control control-middle" ng-click="changeColor('middle'); playMediaFile(2)" ng-class="{'stream-active': currentStream === 'middle'}">
           <div class="round-button">
             <span class="middle">Mixed</span>
           </div>
         </div>
-        <div class="col-33 control control-right" ng-click="changeColor('right'); playTrack(audioTracks[2].track, audioTracks[2].key)" ng-class="{'stream-active': currentStream === 'right'}">
+        <div class="col-33 control control-right" ng-click="changeColor('right'); playMediaFile(3), audioTracks[2].key)" ng-class="{'stream-active': currentStream === 'right'}">
           <div class="round-button">
             <span class="middle">Music</span>
             <span class="below">only</span>
