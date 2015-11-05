@@ -1,6 +1,6 @@
 # Meshmix App Repo
 Your music mixed with personalized, location-based news.
-Website: [newsic.me](http://www.newsic.me)
+Website: [meshmix.com](http://www.meshmix.com)
 
 ## App
 ### ngCordova Plugins
