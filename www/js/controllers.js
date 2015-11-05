@@ -1,82 +1,15 @@
-angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
+var app = angular.module('starter.controllers', ['starter.services', 'ngOpenFB']);
 
-.controller('PlaylistCtrl', function($scope, $stateParams, Spotify) {
-  var listid = $stateParams.listid;
-  var userid = $stateParams.userid;
-  $scope.listname = $stateParams.listname;
-
-  $scope.audio = new Audio();
-
-  $scope.tracks = [];
-
-  Spotify.getPlaylist(userid, listid).then(function (data) {
-    $scope.tracks = data.tracks.items;
-  });
-
-  $scope.playTrack = function(trackInfo) {
-    $scope.audio.src = trackInfo.track.preview_url;
-    $scope.audio.play();
-  };
-
-  $scope.openSpotify = function(link) {
-    window.open(link, '_blank', 'location=yes');
-  };
-
-  $scope.stop = function() {
-    if ($scope.audio.src) {
-      $scope.audio.pause();
-    }
-  };
-
-  $scope.play = function() {
-    if ($scope.audio.src) {
-      $scope.audio.play();
-    }
-  };
-})
-
-
-.controller('ListsCtrl', function($scope, $ionicPlatform, $cordovaOauth, Spotify) {
-  var clientId = '2ae7acb645a742a181f58cc02d6faca4';
-  $scope.playlists = [];
-
-    $scope.performLogin = function() {
-      $cordovaOauth.spotify(clientId, ['user-read-private', 'playlist-read-private']).then(function(result) {
-        window.localStorage.setItem('spotify-token', result.access_token);
-        Spotify.setAuthToken(result.access_token);
-        $scope.updateInfo();
-      }, function(error) {
-          console.log("Error -> " + error);
-      });
-    };
-
-    $scope.updateInfo = function() {
-      Spotify.getCurrentUser().then(function (data) {
-        $scope.getUserPlaylists(data.id);
-      }, function(error) {
-        $scope.performLogin();
-      });
-    };
-
-    $ionicPlatform.ready(function() {
-      var storedToken = window.localStorage.getItem('spotify-token');
-      if (storedToken !== null) {
-        Spotify.setAuthToken(storedToken);
-        $scope.updateInfo();
-      } else {
-        $scope.performLogin();
-      }
-    });
-
-    $scope.getUserPlaylists = function(userid) {
-      Spotify.getUserPlaylists(userid).then(function (data) {
-        $scope.playlists = data.items;
-      });
-    };
-})
-
-
-.controller('LoginCtrl', function($scope, $state, $rootScope, ngFB, $localstorage, $ionicHistory, $http, MeshAPI){
+app.controller('LoginCtrl', function(
+  $scope,
+  $state,
+  $rootScope,
+  ngFB,
+  $localstorage,
+  $ionicHistory,
+  $http,
+  MeshAPI
+){
   // Facebook login
   $scope.fbLogin = function () {
     ngFB.login({scope: 'email'}).then(  // for later: scope: 'email, user_likes' (that must be reviewed by Facebook first)
@@ -131,11 +64,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
       }
     );
   }
-})
+});
 
-
-
-// .controller('SignUpCtrl', function($scope, $ionicHistory){
+// app.controller('SignUpCtrl', function($scope, $ionicHistory){
 //   // Sign Up
 //   $scope.goBack = function() {
 //     $ionicHistory.goBack();
@@ -144,11 +75,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 //   $scope.signUp = function(){
 //     console.log('User should be signed up!');
 //   }
-// })
+// });
 
-
-
-.controller('PlayerCtrl', function(
+app.controller('PlayerCtrl', function(
   $scope,
   $rootScope,
   $http,
@@ -275,7 +204,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
   // Setup categories
   $scope.categories = getCategories();
-  
+
 
   function getCategories() {
     var localCategories = $localstorage.getObject('categories');
@@ -290,7 +219,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
     } else {
       console.log('CATEGORY SETUP: Default categories loaded');
       return defaultCategorySettings;
-    } 
+    }
   }
 
   function setCategory(id, status) {
@@ -324,11 +253,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   }
 
   $scope.chunkedCategories = chunk($scope.categories, 2);
-
-
-
-
-
 
   $scope.sounds = [{
     id: 1,
@@ -408,8 +332,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
       };
 	}
 
-
-
   /**
    * Animate text when it overflows
    */
@@ -458,8 +380,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   //     }, 20);
   // }
 
-
-
 // /**
 //    * Merge two JSON objects
 //    * Source: Source: http://stackoverflow.com/a/24261258
@@ -479,7 +399,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 //                * Iterate the object and set all properties of the inner object.
 //               */
 //               mergedJSON[attrname] = mergeJSON(source1[attrname], mergedJSON[attrname]);
-//           } 
+//           }
 
 //         } else {//else copy the property from source1
 //             mergedJSON[attrname] = source1[attrname];
@@ -489,4 +409,78 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 //       return mergedJSON;
 //   }
 
+});
+
+app.controller('PlaylistCtrl', function($scope, $stateParams, Spotify) {
+  var listid = $stateParams.listid;
+  var userid = $stateParams.userid;
+  $scope.listname = $stateParams.listname;
+
+  $scope.audio = new Audio();
+
+  $scope.tracks = [];
+
+  Spotify.getPlaylist(userid, listid).then(function (data) {
+    $scope.tracks = data.tracks.items;
+  });
+
+  $scope.playTrack = function(trackInfo) {
+    $scope.audio.src = trackInfo.track.preview_url;
+    $scope.audio.play();
+  };
+
+  $scope.openSpotify = function(link) {
+    window.open(link, '_blank', 'location=yes');
+  };
+
+  $scope.stop = function() {
+    if ($scope.audio.src) {
+      $scope.audio.pause();
+    }
+  };
+
+  $scope.play = function() {
+    if ($scope.audio.src) {
+      $scope.audio.play();
+    }
+  };
+});
+
+app.controller('ListsCtrl', function($scope, $ionicPlatform, $cordovaOauth, Spotify) {
+  var clientId = '2ae7acb645a742a181f58cc02d6faca4';
+  $scope.playlists = [];
+
+    $scope.performLogin = function() {
+      $cordovaOauth.spotify(clientId, ['user-read-private', 'playlist-read-private']).then(function(result) {
+        window.localStorage.setItem('spotify-token', result.access_token);
+        Spotify.setAuthToken(result.access_token);
+        $scope.updateInfo();
+      }, function(error) {
+          console.log("Error -> " + error);
+      });
+    };
+
+    $scope.updateInfo = function() {
+      Spotify.getCurrentUser().then(function (data) {
+        $scope.getUserPlaylists(data.id);
+      }, function(error) {
+        $scope.performLogin();
+      });
+    };
+
+    $ionicPlatform.ready(function() {
+      var storedToken = window.localStorage.getItem('spotify-token');
+      if (storedToken !== null) {
+        Spotify.setAuthToken(storedToken);
+        $scope.updateInfo();
+      } else {
+        $scope.performLogin();
+      }
+    });
+
+    $scope.getUserPlaylists = function(userid) {
+      Spotify.getUserPlaylists(userid).then(function (data) {
+        $scope.playlists = data.items;
+      });
+    };
 });
